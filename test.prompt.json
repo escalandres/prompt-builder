@@ -1,0 +1,29 @@
+{
+    "version": "1.0.0",
+    "type": "prompt-template",
+    "metadata": {
+        "id": "test-template",
+        "name": "Test Template",
+        "description": "Template de prueba para import",
+        "author": "test",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-01-01T00:00:00Z",
+        "tags": ["test"]
+    },
+    "state": {
+        "role": {
+            "persona": "Test Persona",
+            "job": "Test Job"
+        },
+        "task": "This is a test task",
+        "constraints": [
+            "Be concise",
+            "Use markdown"
+        ],
+        "input": "test input",
+        "output_format": "markdown",
+        "variables": {
+            "input": "value"
+        }
+    }
+}

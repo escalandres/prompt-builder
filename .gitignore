@@ -1,158 +1,27 @@
-.continue
-
-```gitignore
-# ======================================================
-# Prompt Builder
-# ======================================================
-
-# ------------------------------
-# Operating System
-# ------------------------------
-.DS_Store
-Thumbs.db
-Desktop.ini
-
-# ------------------------------
-# IDEs
-# ------------------------------
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-
-.idea/
-*.iml
-
-# ------------------------------
 # Logs
-# ------------------------------
-logs/
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
-# ------------------------------
-# Dependencies
-# ------------------------------
-node_modules/
+node_modules
+dist
+dist-ssr
+*.local
 
-# ------------------------------
-# Package Managers
-# ------------------------------
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-bun.lockb
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# ------------------------------
-# Build
-# ------------------------------
-dist/
-build/
-out/
-coverage/
-
-# ------------------------------
-# Cache
-# ------------------------------
-.cache/
-.parcel-cache/
-.eslintcache
-.stylelintcache
-.tmp/
-temp/
-
-# ------------------------------
-# Environment
-# ------------------------------
-.env
-.env.*
-!.env.example
-
-# ------------------------------
-# Testing
-# ------------------------------
-.nyc_output/
-playwright-report/
-test-results/
-
-# ------------------------------
-# Runtime
-# ------------------------------
-*.pid
-*.seed
-*.pid.lock
-
-# ------------------------------
-# Archives
-# ------------------------------
-*.zip
-*.tar
-*.gz
-*.rar
-*.7z
-
-# ------------------------------
-# Local Storage / Browser
-# ------------------------------
-.localstorage
-.localstorage-journal
-
-# ------------------------------
-# Generated Prompt Templates
-# (Only if users export them locally)
-# ------------------------------
-exports/
-generated/
-downloads/
-
-# ------------------------------
-# Temporary Files
-# ------------------------------
-*.tmp
-*.temp
-*.bak
-*.swp
-*.swo
-
-# ------------------------------
-# macOS
-# ------------------------------
-.AppleDouble
-.LSOverride
-
-# ------------------------------
-# Linux
-# ------------------------------
-*~
-
-# ------------------------------
-# Windows
-# ------------------------------
-ehthumbs.db
-
-# ------------------------------
-# Optional Future Tools
-# ------------------------------
-.vercel/
-.netlify/
-.firebase/
-.supabase/
-
-# ------------------------------
-# AI / LLM
-# ------------------------------
-.prompt-history/
-.prompt-cache/
-.llm-cache/
-.ollama/
-.lmstudio/
-
-# ------------------------------
-# Misc
-# ------------------------------
-*.orig
-```
+# Ai Agents
+.continue
