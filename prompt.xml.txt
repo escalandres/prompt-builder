@@ -1,0 +1,158 @@
+<role>
+You are a Senior Recruiter. Your job is to Analyzing candidates profiles.
+</role>
+<task>
+Analyze my LinkedIn profile, give me recommendations to adjust texts, work experience and all my LinkedIn profile to get more views, interactions and job proposals.
+</task>
+<input>
+Contactar
+
+andres.escala@hotmail.com
+
+www.linkedin.com/in/escalandres
+(LinkedIn)
+
+Andres Rafael Escala Acosta
+
+Technical Consultant | Full-stack Developer | .Net Dev | Telematics
+Engineer |
+Ciudad de MÚxico, MÚxico
+
+Aptitudes principales
+
+Extracto
+
+AI
+
+NetSuite
+
+Suitescript 2.0
+
+Languages
+
+InglÚs (Professional Working)
+
+Certifications
+
+Oracle Cloud Infrastructure 2025
+Certified Generative AI Professional
+
+Oracle Cloud Infrastructure 2025
+Certified AI Foundations Associate
+
+Oracle NetSuite Certified AI
+Foundations Associate
+
+Microsoft Certified: Azure
+Fundamentals
+
+Oracle NetSuite SuiteFoundation
+Specialist
+
+Full Stack Developer &amp;amp; Technical Consultant with 4 years
+
+of experience designing, building, and scaling enterprise-grade
+
+web applications and RESTful APIs using .NET (C#), Node.js,
+
+and Express.js. Expert in developing modern, maintainable user
+
+interfaces with React.js (3 years). Strong proficiency in database
+
+design, migration, and query optimization for SQL Server and
+
+MongoDB. Proven track record in customizing ERP systems and
+
+bridge-building between technical requirements and business
+
+goals. Experienced in QA processes, CI/CD pipelines, and Agile
+
+environments, ensuring high-quality and stable software delivery.
+
+Experiencia
+
+Oracle
+1 a±o 11 meses
+
+Associate Technical Consultant
+agosto de 2025á-áPresentá(11 meses)
+Ciudad de MÚxico, MÚxico
+
+Technical Jr Consultant NetSuite
+septiembre de 2024á-áagosto de 2025á(1 a±o)
+Ciudad de MÚxico, MÚxico
+
+Track and manage technical plan in implementation projects
+
+Technical-level solution implementation in projects.
+
+Develop in suitescript 2.0 ( Suitelet, Clientscript, Map collapses, Scheduled,
+
+restlet (APIS), workflow, user event).
+
+Development of customizations to complement Mexico localization
+
+Document and improve internal technical processes.
+
+GenO Intern
+agosto de 2024á-áagosto de 2025á(1 a±o 1 mes)
+Ciudad de MÚxico, MÚxico
+
+Participate in LATAM integration projects
+
+Page 1 of 2
+
+Carry out innovation projects
+
+Aut¾nomo
+Desarrollador web
+marzo de 2021á-áPresentá(5 a±os 4 meses)
+Ciudad de MÚxico, MÚxico
+
+3 years of experience developing apps with C, Python, and web techs like
+
+HTML5, CSS3, JavaScript, Bootstrap, Reactjs, Nodejs, Git and Github.
+
+INFO 100
+Desarrollador web
+noviembre de 2022á-áagosto de 2024á(1 a±o 10 meses)
+Ciudad de MÚxico, MÚxico
+
+I was in charge of the development of web applications and RESTFULL API
+
+for the prevention of money laundering, and for credit management for
+
+microfinance companies. I was also in charge of the migration of projects to
+
+more modern technologies.
+
+New Ventures
+Intership
+agosto de 2022á-áoctubre de 2022á(3 meses)
+Ciudad de MÚxico, MÚxico
+
+I was in charge of developing an administration system to store information
+
+on social impact programs in ClickUp. And development of a landing page in
+
+WordPress for a new edition of the program
+
+Educaci¾n
+
+Unidad Profesional Interdisciplinaria en IngenierÝa y TecnologÝas
+
+Avanzadas
+
+IngenierÝa,áTelematicaáÀá(enero de 2020á-áenero de 2026)
+
+Instituto PolitÚcnico Nacional
+
+IngenierÝa,áIngenierÝa de telecomunicacionesáÀá(2020á-á2025)
+
+Page 2 of 2
+
+
+
+</input>
+<output_format>
+</output_format>

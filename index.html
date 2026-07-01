@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XML Prompt Builder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<header class="header">
+<div>
+<h1>XML Prompt Builder</h1>
+<p>Build structured prompts for LLMs</p>
+</div>
+<div class="header-actions">
+    <button id="import-template-btn" class="btn" type="button">
+        Import Template
+    </button>
+
+    <button id="export-template-btn" class="btn" type="button">
+        Export Template
+    </button>
+
+    <button id="copy-btn" class="btn btn-primary" type="button">
+        Copy XML
+    </button>
+
+    <button id="download-btn" class="btn" type="button">
+        Download .txt
+    </button>
+</div>
+</header>
+
+<main class="workspace">
+<section class="editor-panel">
+<div class="card">
+<label for="persona">Persona</label>
+<input id="persona" type="text" placeholder="Software Architect">
+<small>The role the model should assume.</small>
+</div>
+
+<div class="card">
+<label for="job">Job</label>
+<input id="job" type="text" placeholder="Design scalable enterprise software">
+<small>Describe the responsibility of the assistant.</small>
+</div>
+
+<div class="card">
+<label for="task">Task</label>
+<textarea id="task" rows="4" placeholder="Analyze the following source code and suggest improvements."></textarea>
+</div>
+
+<div class="card">
+<div class="section-header">
+<label>Constraints</label>
+<button id="add-constraint" class="btn btn-small" type="button">+ Add</button>
+</div>
+<div id="constraints-list" class="dynamic-list"></div>
+</div>
+
+<div class="card">
+<label for="input-placeholder">Input</label>
+<textarea id="input-placeholder" rows="6" placeholder="{{input}}"></textarea>
+</div>
+
+<div class="card">
+<label for="output-format">Output Format</label>
+<textarea id="output-format" rows="5" placeholder="Markdown with headings and bullet lists."></textarea>
+</div>
+
+<div class="card">
+<div class="section-header">
+<label>Variables</label>
+<button id="add-variable" class="btn btn-small" type="button">+ Add</button>
+</div>
+<div id="variables-list" class="dynamic-list"></div>
+</div>
+</section>
+
+<section class="preview-panel">
+<div class="preview-header">
+<h2>Preview</h2>
+<button id="beautify-btn" class="btn btn-small" type="button">Beautify</button>
+</div>
+<pre id="xml-preview"></pre>
+</section>
+</main>
+</div>
+
+<template id="constraint-template">
+<div class="list-item">
+<input class="constraint-input" type="text" placeholder="Must include...">
+<button class="icon-btn remove-item" type="button" title="Remove">✕</button>
+</div>
+</template>
+
+<template id="variable-template">
+<div class="list-item variable-item">
+<input class="variable-name" type="text" placeholder="language">
+<input class="variable-value" type="text" placeholder="{{language}}">
+<button class="icon-btn remove-item" type="button" title="Remove">✕</button>
+</div>
+</template>
+<input
+    id="template-file"
+    type="file"
+    accept=".prompt.json,application/json"
+    hidden
+>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
