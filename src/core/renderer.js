@@ -25,8 +25,8 @@ export function createRenderer(elements) {
             div.className = "item";
 
             div.innerHTML = `
-                <input value="${c}" data-index="${i}" class="constraint-input"/>
                 <button data-index="${i}" class="remove">x</button>
+                <input value="${c}" data-index="${i}" class="constraint-input"/>
             `;
 
             elements.constraintsList.appendChild(div);

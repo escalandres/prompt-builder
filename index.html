@@ -52,11 +52,30 @@
 </div>
 
 <div class="card">
-<div class="section-header">
-<label>Constraints</label>
-<button id="add-constraint" class="btn btn-small" type="button">+ Add</button>
-</div>
-<div id="constraints-list" class="dynamic-list"></div>
+    <div class="section-header">
+        <div class="section-title">
+            <label for="constraints-list">Constraints</label>
+            <span class="section-description">
+                Define the rules the LLM must always follow.
+            </span>
+        </div>
+
+        <button
+            id="add-constraint"
+            class="btn btn-primary btn-small"
+            type="button"
+            aria-label="Add constraint"
+        >
+            <span class="btn-icon">+</span>
+            <span>Add</span>
+        </button>
+    </div>
+
+    <div
+        id="constraints-list"
+        class="dynamic-list"
+        role="list"
+    ></div>
 </div>
 
 <div class="card">
