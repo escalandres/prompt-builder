@@ -25,3 +25,9 @@ dist-ssr
 
 # Ai Agents
 .continue
+
+# Graphify output
+graphify-out/
+
+# Prompt context files
+*.jsonl

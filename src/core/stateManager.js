@@ -1,78 +1,170 @@
 import { storage } from "../services/storage.js";
 
-const STORAGE_KEY = "prompt-builder-state-v1";
-
-const defaultState = {
+const DEFAULT_STATE = {
     role: {
         persona: "",
         job: ""
     },
+
     task: "",
-    input: "",
-    output_format: "",
+
     constraints: [],
-    variables: {}
+
+    input: "{{input}}",
+
+    output_format: "",
+
+    variables: []
 };
 
-let state = loadState();
+let state = storage.load() ?? structuredClone(DEFAULT_STATE);
 
-const listeners = new Set();
+const subscribers = new Set();
 
-function loadState() {
-    const saved = storage.load?.(STORAGE_KEY);
+function notify() {
 
-    if (!saved) {
-        return structuredClone(defaultState);
-    }
+    storage.save(state);
 
-    return {
-        ...structuredClone(defaultState),
-        ...saved
-    };
+    subscribers.forEach(callback => callback(getState()));
+
 }
 
-function saveState() {
-    storage.save?.(state, STORAGE_KEY);
+function clone(value) {
+
+    return structuredClone(value);
+
 }
 
 export const stateManager = {
-    getState() {
-        return state;
+
+    subscribe(callback) {
+
+        subscribers.add(callback);
+
     },
 
-    setState(newState) {
-        state = {
-            ...state,
-            ...newState
-        };
+    unsubscribe(callback) {
 
-        saveState();
+        subscribers.delete(callback);
+
+    },
+
+    getState() {
+
+        return clone(state);
+
+    },
+
+    replace(newState) {
+
+        state = clone(newState);
+
         notify();
+
+    },
+
+    reset() {
+
+        state = clone(DEFAULT_STATE);
+
+        notify();
+
     },
 
     update(path, value) {
-        const keys = path.split(".");
-        let target = state;
 
-        for (let i = 0; i < keys.length - 1; i++) {
-            target = target[keys[i]];
+        const keys = path.split(".");
+
+        let current = state;
+
+        while (keys.length > 1) {
+
+            current = current[keys.shift()];
+
         }
 
-        target[keys[keys.length - 1]] = value;
+        current[keys[0]] = value;
 
-        saveState();
-        notify();
+        storage.save(state);
+
     },
 
-    subscribe(fn) {
-        listeners.add(fn);
+    /* -------------------------------------------------- */
+    /* Constraints                                         */
+    /* -------------------------------------------------- */
 
-        return () => listeners.delete(fn);
+    addConstraint() {
+
+        state.constraints.push("");
+
+        notify();
+
+    },
+
+    updateConstraint(index, value) {
+
+        if (!(index in state.constraints)) {
+            return;
+        }
+
+        state.constraints[index] = value;
+
+        storage.save(state);
+
+    },
+
+    removeConstraint(index) {
+
+        if (!(index in state.constraints)) {
+            return;
+        }
+
+        state.constraints.splice(index, 1);
+
+        notify();
+
+    },
+
+    /* -------------------------------------------------- */
+    /* Variables                                           */
+    /* -------------------------------------------------- */
+
+    addVariable() {
+
+        state.variables.push({
+            name: "",
+            value: ""
+        });
+
+        notify();
+
+    },
+
+    updateVariable(index, name, value) {
+
+        if (!(index in state.variables)) {
+            return;
+        }
+
+        state.variables[index] = {
+            name,
+            value
+        };
+
+        storage.save(state);
+
+    },
+
+    removeVariable(index) {
+
+        if (!(index in state.variables)) {
+            return;
+        }
+
+        state.variables.splice(index, 1);
+
+        notify();
+
     }
+
 };
-
-function notify() {
-    for (const fn of listeners) {
-        fn(state);
-    }
-}

@@ -10,52 +10,73 @@
 <div class="app">
 <header class="header">
 <div>
-<h1>XML Prompt Builder</h1>
-<p>Build structured prompts for LLMs</p>
+<h1 data-i18n="app.title">XML Prompt Builder</h1>
+<p data-i18n="app.subtitle">Build structured prompts for LLMs</p>
 </div>
 <div class="header-actions">
-    <button id="import-template-btn" class="btn" type="button">
-        Import Template
+
+    <div class="btn-group">
+        <button id="template-selector-btn" class="btn" type="button" title="Templates">
+            Templates ▾
+        </button>
+        <div id="template-selector-menu" class="dropdown-menu dropdown-menu-left"></div>
+    </div>
+
+    <button id="settings-btn" class="btn" type="button" data-i18n-title="toolbar.settings" title="Settings">
+        <span data-i18n="toolbar.settings">Settings</span>
     </button>
 
-    <button id="export-template-btn" class="btn" type="button">
-        Export Template
+    <button id="import-template-btn" class="btn" type="button" data-i18n-title="toolbar.import" title="Import Template">
+        <span data-i18n="toolbar.import">Import Template</span>
     </button>
 
-    <button id="copy-btn" class="btn btn-primary" type="button">
-        Copy XML
+    <button id="export-template-btn" class="btn" type="button" data-i18n-title="toolbar.export" title="Export Template">
+        <span data-i18n="toolbar.export">Export Template</span>
     </button>
 
-    <button id="download-btn" class="btn" type="button">
-        Download .txt
+    <button id="copy-btn" class="btn btn-primary" type="button" data-i18n-title="toolbar.copy" title="Copy XML">
+        <span data-i18n="toolbar.copy">Copy XML</span>
     </button>
+
+    <div class="btn-group">
+        <button id="download-btn" class="btn" type="button" data-i18n-title="toolbar.download" title="Download .txt">
+            <span data-i18n="toolbar.download">Download</span>
+        </button>
+        <button id="download-format-btn" class="btn btn-icon-only" type="button" title="Format">▾</button>
+        <div id="download-menu" class="dropdown-menu">
+            <button data-format="txt" class="dropdown-item">.txt</button>
+            <button data-format="xml" class="dropdown-item">.xml</button>
+            <button data-format="json" class="dropdown-item">.json</button>
+            <button data-format="md" class="dropdown-item">.md</button>
+        </div>
+    </div>
 </div>
 </header>
 
 <main class="workspace">
 <section class="editor-panel">
 <div class="card">
-<label for="persona">Persona</label>
-<input id="persona" type="text" placeholder="Software Architect">
-<small>The role the model should assume.</small>
+<label for="persona" data-i18n="form.persona">Persona</label>
+<input id="persona" type="text" data-i18n="form.personaPlaceholder" placeholder="Software Architect">
+<small data-i18n="form.personaDesc">The role the model should assume.</small>
 </div>
 
 <div class="card">
-<label for="job">Job</label>
-<input id="job" type="text" placeholder="Design scalable enterprise software">
-<small>Describe the responsibility of the assistant.</small>
+<label for="job" data-i18n="form.job">Job</label>
+<input id="job" type="text" data-i18n="form.jobPlaceholder" placeholder="Design scalable enterprise software">
+<small data-i18n="form.jobDesc">Describe the responsibility of the assistant.</small>
 </div>
 
 <div class="card">
-<label for="task">Task</label>
-<textarea id="task" rows="4" placeholder="Analyze the following source code and suggest improvements."></textarea>
+<label for="task" data-i18n="form.task">Task</label>
+<textarea id="task" rows="4" data-i18n="form.taskPlaceholder" placeholder="Analyze the following source code and suggest improvements."></textarea>
 </div>
 
 <div class="card">
     <div class="section-header">
         <div class="section-title">
-            <label for="constraints-list">Constraints</label>
-            <span class="section-description">
+            <label for="constraints-list" data-i18n="form.constraints">Constraints</label>
+            <span class="section-description" data-i18n="form.constraintsDesc">
                 Define the rules the LLM must always follow.
             </span>
         </div>
@@ -67,7 +88,7 @@
             aria-label="Add constraint"
         >
             <span class="btn-icon">+</span>
-            <span>Add</span>
+            <span data-i18n="form.addConstraint">Add</span>
         </button>
     </div>
 
@@ -79,19 +100,19 @@
 </div>
 
 <div class="card">
-<label for="input-placeholder">Input</label>
-<textarea id="input-placeholder" rows="6" placeholder="{{input}}"></textarea>
+<label for="input-placeholder" data-i18n="form.input">Input</label>
+<textarea id="input-placeholder" rows="6" data-i18n="form.inputPlaceholder" placeholder="{{input}}"></textarea>
 </div>
 
 <div class="card">
-<label for="output-format">Output Format</label>
-<textarea id="output-format" rows="5" placeholder="Markdown with headings and bullet lists."></textarea>
+<label for="output-format" data-i18n="form.outputFormat">Output Format</label>
+<textarea id="output-format" rows="5" data-i18n="form.outputFormatPlaceholder" placeholder="Markdown with headings and bullet lists."></textarea>
 </div>
 
 <div class="card">
 <div class="section-header">
-<label>Variables</label>
-<button id="add-variable" class="btn btn-small" type="button">+ Add</button>
+<label data-i18n="form.variables">Variables</label>
+<button id="add-variable" class="btn btn-small" type="button" data-i18n="form.addVariable">+ Add</button>
 </div>
 <div id="variables-list" class="dynamic-list"></div>
 </div>
@@ -99,26 +120,164 @@
 
 <section class="preview-panel">
 <div class="preview-header">
-<h2>Preview</h2>
-<button id="beautify-btn" class="btn btn-small" type="button">Beautify</button>
+<h2 data-i18n="preview.title">Preview</h2>
+<button id="beautify-btn" class="btn btn-small" type="button" data-i18n="preview.beautify">Beautify</button>
 </div>
 <pre id="xml-preview"></pre>
 </section>
 </main>
 </div>
 
+<div id="notification-container" class="notification-container"></div>
+
+<div id="settings-overlay" class="overlay"></div>
+
+<div id="import-overlay" class="overlay"></div>
+
+<aside id="import-panel" class="modal-panel" role="dialog" aria-label="Import Template">
+    <div class="modal-header">
+        <h2 data-i18n="toolbar.import">Import Template</h2>
+        <button id="import-close" class="icon-btn" type="button" title="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div id="import-dropzone" class="dropzone">
+            <p>Drop a <code>.prompt.json</code> file here or click to browse</p>
+        </div>
+        <input id="import-file-input" type="file" accept=".prompt.json,application/json" hidden>
+        <p id="import-error" class="modal-error hidden"></p>
+    </div>
+</aside>
+
+<div id="export-overlay" class="overlay"></div>
+
+<aside id="export-panel" class="modal-panel" role="dialog" aria-label="Export Template">
+    <div class="modal-header">
+        <h2 data-i18n="toolbar.export">Export Template</h2>
+        <button id="export-close" class="icon-btn" type="button" title="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="settings-group">
+            <label for="export-name">Name</label>
+            <input id="export-name" type="text" placeholder="My Prompt Template">
+        </div>
+        <div class="settings-group">
+            <label for="export-description">Description</label>
+            <textarea id="export-description" rows="3" placeholder="Optional description"></textarea>
+        </div>
+        <div class="settings-group">
+            <label for="export-author">Author</label>
+            <input id="export-author" type="text" placeholder="Your name">
+        </div>
+        <div class="modal-actions">
+            <button id="export-cancel" class="btn" type="button" data-i18n="toolbar.import">Cancel</button>
+            <button id="export-confirm" class="btn btn-primary" type="button">Export</button>
+        </div>
+    </div>
+</aside>
+
+<aside id="settings-panel" class="settings-panel" role="dialog" aria-label="Settings">
+    <div class="settings-header">
+        <h2 data-i18n="settings.title">Settings</h2>
+        <button id="settings-close" class="icon-btn" type="button" title="Close">&times;</button>
+    </div>
+
+    <div class="settings-body">
+        <div class="settings-group">
+            <label for="settings-default-persona" data-i18n="settings.defaultPersona">Default Persona</label>
+            <input id="settings-default-persona" type="text" data-i18n="settings.defaultPersonaDesc" placeholder="Prefills the Persona field on new prompts.">
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-default-job" data-i18n="settings.defaultJob">Default Job</label>
+            <input id="settings-default-job" type="text" data-i18n="settings.defaultJobDesc" placeholder="Prefills the Job field on new prompts.">
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-default-task" data-i18n="settings.defaultTask">Default Task</label>
+            <textarea id="settings-default-task" rows="3" data-i18n="settings.defaultTaskDesc" placeholder="Prefills the Task field on new prompts."></textarea>
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-default-output-format" data-i18n="settings.defaultOutputFormat">Default Output Format</label>
+            <textarea id="settings-default-output-format" rows="3" data-i18n="settings.defaultOutputFormatDesc" placeholder="Prefills the Output Format field."></textarea>
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-indent-size" data-i18n="settings.indentSize">XML Indent Size</label>
+            <select id="settings-indent-size">
+                <option value="2" data-i18n="settings.indent2">2 spaces</option>
+                <option value="4" data-i18n="settings.indent4">4 spaces</option>
+            </select>
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-font-size" data-i18n="settings.fontSize">Font Size</label>
+            <select id="settings-font-size">
+                <option value="12px">12px</option>
+                <option value="13px">13px</option>
+                <option value="14px">14px</option>
+                <option value="15px">15px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+            </select>
+            <small data-i18n="settings.fontSizeDesc">Font size for editor and preview.</small>
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-theme" data-i18n="settings.theme">Theme</label>
+            <select id="settings-theme">
+                <option value="dark" data-i18n="settings.themeDark">Dark</option>
+                <option value="light" data-i18n="settings.themeLight">Light</option>
+                <option value="system" data-i18n="settings.themeSystem">System</option>
+            </select>
+        </div>
+
+        <div class="settings-group">
+            <label for="settings-language" data-i18n="settings.language">Language</label>
+            <select id="settings-language">
+                <option value="en">English</option>
+                <option value="es">Espa&ntilde;ol</option>
+            </select>
+            <small data-i18n="settings.languageDesc">Interface language (XML tags remain in English).</small>
+        </div>
+
+        <div class="settings-group">
+            <label class="checkbox-label">
+                <input id="settings-auto-preview" type="checkbox">
+                <span data-i18n="settings.autoPreview">Auto-preview XML</span>
+            </label>
+            <small data-i18n="settings.autoPreviewDesc">Update preview in real time as you type.</small>
+        </div>
+
+        <div class="settings-group">
+            <label class="checkbox-label">
+                <input id="settings-compact-mode" type="checkbox">
+                <span data-i18n="settings.compactMode">Compact Mode</span>
+            </label>
+            <small data-i18n="settings.compactModeDesc">Reduce spacing for a denser layout.</small>
+        </div>
+    </div>
+</aside>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <img src="/favicon.svg" alt="AES STUDIO" class="footer-logo" width="24" height="24">
+        <span class="footer-brand" data-i18n="footer.brand">AES STUDIO</span>
+    </div>
+</footer>
+
 <template id="constraint-template">
 <div class="list-item">
-<input class="constraint-input" type="text" placeholder="Must include...">
-<button class="icon-btn remove-item" type="button" title="Remove">✕</button>
+<input class="constraint-input" type="text" data-i18n="form.constraintsPlaceholder" placeholder="Must include...">
+<button class="icon-btn remove-item" type="button" title="Remove">&times;</button>
 </div>
 </template>
 
 <template id="variable-template">
 <div class="list-item variable-item">
-<input class="variable-name" type="text" placeholder="language">
-<input class="variable-value" type="text" placeholder="{{language}}">
-<button class="icon-btn remove-item" type="button" title="Remove">✕</button>
+<input class="variable-name" type="text" data-i18n="form.variableNamePlaceholder" placeholder="language">
+<input class="variable-value" type="text" data-i18n="form.variableValuePlaceholder" placeholder="{{language}}">
+<button class="icon-btn remove-item" type="button" title="Remove">&times;</button>
 </div>
 </template>
 <input

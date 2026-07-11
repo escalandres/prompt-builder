@@ -1,115 +1,283 @@
-// templateValidator.js
+/**
+ * Template Validator
+ *
+ * Valida la estructura de un template antes de:
+ *
+ * - Importarlo
+ * - Exportarlo
+ * - Guardarlo
+ * - Compartirlo
+ *
+ * Este validador garantiza que cualquier template
+ * tenga la estructura mínima requerida por la aplicación.
+ */
 
-function isObject(value) {
-    return value !== null && typeof value === "object" && !Array.isArray(value);
-}
+const REQUIRED_FIELDS = [
+    "role",
+    "task",
+    "constraints",
+    "input",
+    "output_format",
+    "variables"
+];
 
-function isString(value) {
-    return typeof value === "string";
-}
+/* ---------------------------------------------------------- */
+/* Validación principal                                        */
+/* ---------------------------------------------------------- */
 
 export function validateTemplate(template) {
-    if (!isObject(template)) {
-        throw new Error("Invalid template: root object is required.");
+
+    const errors = [];
+
+    if (!template || typeof template !== "object") {
+
+        return {
+            valid: false,
+            errors: [
+                "Template must be an object."
+            ]
+        };
+
     }
 
-    if (!isString(template.version) || template.version.trim() === "") {
-        throw new Error("Invalid template: missing version.");
+    REQUIRED_FIELDS.forEach(field => {
+
+        if (!(field in template)) {
+
+            errors.push(
+                `Missing required field: ${field}`
+            );
+
+        }
+
+    });
+
+    validateRole(
+        template.role,
+        errors
+    );
+
+    validateTask(
+        template.task,
+        errors
+    );
+
+    validateConstraints(
+        template.constraints,
+        errors
+    );
+
+    validateInput(
+        template.input,
+        errors
+    );
+
+    validateOutput(
+        template.output_format,
+        errors
+    );
+
+    validateVariables(
+        template.variables,
+        errors
+    );
+
+    return {
+
+        valid: errors.length === 0,
+        errors
+
+    };
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateRole(role, errors) {
+
+    if (!role || typeof role !== "object") {
+
+        errors.push(
+            "role must be an object."
+        );
+
+        return;
+
     }
 
-    if (template.type !== "prompt-template") {
-        throw new Error("Invalid template type.");
+    if (typeof role.persona !== "string") {
+
+        errors.push(
+            "role.persona must be a string."
+        );
+
     }
 
-    validateMetadata(template.metadata);
-    validateState(template.state);
+    if (typeof role.job !== "string") {
+
+        errors.push(
+            "role.job must be a string."
+        );
+
+    }
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateTask(task, errors) {
+
+    if (typeof task !== "string") {
+
+        errors.push(
+            "task must be a string."
+        );
+
+    }
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateConstraints(list, errors) {
+
+    if (!Array.isArray(list)) {
+
+        errors.push(
+            "constraints must be an array."
+        );
+
+        return;
+
+    }
+
+    list.forEach((item, index) => {
+
+        if (typeof item !== "string") {
+
+            errors.push(
+                `constraints[${index}] must be a string.`
+            );
+
+        }
+
+    });
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateInput(input, errors) {
+
+    if (typeof input !== "string") {
+
+        errors.push(
+            "input must be a string."
+        );
+
+    }
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateOutput(output, errors) {
+
+    if (typeof output !== "string") {
+
+        errors.push(
+            "output_format must be a string."
+        );
+
+    }
+
+}
+
+/* ---------------------------------------------------------- */
+
+function validateVariables(variables, errors) {
+
+    if (!Array.isArray(variables)) {
+
+        errors.push(
+            "variables must be an array."
+        );
+
+        return;
+
+    }
+
+    variables.forEach((variable, index) => {
+
+        if (
+            variable === null ||
+            typeof variable !== "object"
+        ) {
+
+            errors.push(
+                `variables[${index}] must be an object.`
+            );
+
+            return;
+
+        }
+
+        if (typeof variable.name !== "string") {
+
+            errors.push(
+                `variables[${index}].name must be a string.`
+            );
+
+        }
+
+        if (typeof variable.value !== "string") {
+
+            errors.push(
+                `variables[${index}].value must be a string.`
+            );
+
+        }
+
+    });
+
+}
+
+/* ---------------------------------------------------------- */
+/* Lanza excepción si es inválido                              */
+/* ---------------------------------------------------------- */
+
+export function assertTemplate(template) {
+
+    const result = validateTemplate(template);
+
+    if (!result.valid) {
+
+        throw new Error(
+            result.errors.join("\n")
+        );
+
+    }
 
     return true;
+
 }
 
-function validateMetadata(metadata) {
-    if (!isObject(metadata)) {
-        throw new Error("Invalid metadata.");
-    }
+/* ---------------------------------------------------------- */
+/* Devuelve solamente los errores                              */
+/* ---------------------------------------------------------- */
 
-    const requiredFields = [
-        "id",
-        "name",
-        "description",
-        "author",
-        "createdAt",
-        "updatedAt"
-    ];
+export function getTemplateErrors(template) {
 
-    for (const field of requiredFields) {
-        if (!isString(metadata[field])) {
-            throw new Error(`Metadata field "${field}" is required.`);
-        }
-    }
+    return validateTemplate(template).errors;
 
-    if (
-        metadata.tags !== undefined &&
-        !Array.isArray(metadata.tags)
-    ) {
-        throw new Error("Metadata.tags must be an array.");
-    }
 }
 
-function validateState(state) {
-    if (!isObject(state)) {
-        throw new Error("State is required.");
-    }
+/* ---------------------------------------------------------- */
+/* Verificación rápida                                          */
+/* ---------------------------------------------------------- */
 
-    validateRole(state.role);
+export function isValidTemplate(template) {
 
-    if (!isString(state.task)) {
-        throw new Error("Task must be a string.");
-    }
+    return validateTemplate(template).valid;
 
-    if (!Array.isArray(state.constraints)) {
-        throw new Error("Constraints must be an array.");
-    }
-
-    for (const constraint of state.constraints) {
-        if (!isString(constraint)) {
-            throw new Error("Each constraint must be a string.");
-        }
-    }
-
-    if (!isString(state.input)) {
-        throw new Error("Input must be a string.");
-    }
-
-    if (!isString(state.output_format)) {
-        throw new Error("Output format must be a string.");
-    }
-
-    if (
-        state.variables !== undefined &&
-        !isObject(state.variables)
-    ) {
-        throw new Error("Variables must be an object.");
-    }
-
-    if (state.variables) {
-        for (const [key, value] of Object.entries(state.variables)) {
-            if (!isString(key) || !isString(value)) {
-                throw new Error("Variables must contain string keys and values.");
-            }
-        }
-    }
-}
-
-function validateRole(role) {
-    if (!isObject(role)) {
-        throw new Error("Role is required.");
-    }
-
-    if (!isString(role.persona)) {
-        throw new Error("Role.persona must be a string.");
-    }
-
-    if (!isString(role.job)) {
-        throw new Error("Role.job must be a string.");
-    }
 }
