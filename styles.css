@@ -1333,8 +1333,10 @@ hr {
 
 .footer-inner {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .footer-logo {
@@ -1347,6 +1349,17 @@ hr {
     font-weight: 700;
     letter-spacing: .04em;
     color: var(--text);
+}
+
+.footer-copyright {
+    font-size: .82rem;
+    color: var(--text-muted);
+}
+
+.footer-brand + .footer-copyright::before {
+    content: "·";
+    margin-right: 10px;
+    color: var(--text-muted);
 }
 
 
