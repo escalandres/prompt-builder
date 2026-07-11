@@ -85,7 +85,7 @@ export const stateManager = {
 
         current[keys[0]] = value;
 
-        storage.save(state);
+        notify();
 
     },
 
@@ -109,7 +109,7 @@ export const stateManager = {
 
         state.constraints[index] = value;
 
-        storage.save(state);
+        notify();
 
     },
 
@@ -151,7 +151,7 @@ export const stateManager = {
             value
         };
 
-        storage.save(state);
+        notify();
 
     },
 

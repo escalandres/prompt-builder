@@ -26,15 +26,11 @@ export function createEventBinder(elements, renderer) {
 
             stateManager.update("role.persona", e.target.value);
 
-            renderer.renderPreview();
-
         });
 
         elements.job.addEventListener("input", e => {
 
             stateManager.update("role.job", e.target.value);
-
-            renderer.renderPreview();
 
         });
 
@@ -42,23 +38,17 @@ export function createEventBinder(elements, renderer) {
 
             stateManager.update("task", e.target.value);
 
-            renderer.renderPreview();
-
         });
 
         elements.input.addEventListener("input", e => {
 
             stateManager.update("input", e.target.value);
 
-            renderer.renderPreview();
-
         });
 
         elements.output.addEventListener("input", e => {
 
             stateManager.update("output_format", e.target.value);
-
-            renderer.renderPreview();
 
         });
 
@@ -228,8 +218,6 @@ export function createEventBinder(elements, renderer) {
                 e.target.value
             );
 
-            renderer.renderPreview();
-
         });
 
         elements.constraintsList.addEventListener("click", e => {
@@ -281,8 +269,6 @@ export function createEventBinder(elements, renderer) {
                 key,
                 value
             );
-
-            renderer.renderPreview();
 
         });
 
