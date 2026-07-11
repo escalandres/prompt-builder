@@ -3,56 +3,55 @@
 export const templates = {
     basic: {
         name: "Basic Prompt",
-        description: "Estructura simple de prompt con role, task e input",
+        description: "Simple: role, task and input",
         structure: {
             role: {
-                persona: "",
-                job: ""
+                persona: "Expert Assistant",
+                job: "provide clear and accurate responses"
             },
-            task: "",
+            task: "Answer the following question based on your knowledge.",
             constraints: [],
-            input: "",
+            input: "{{question}}",
             output_format: ""
         }
     },
 
     advanced: {
         name: "Advanced Prompt",
-        description: "Incluye variables y constraints estructuradas",
+        description: "Includes constraints, output format and variables",
         structure: {
             role: {
-                persona: "",
-                job: ""
+                persona: "Senior Software Architect",
+                job: "design and review system architecture"
             },
-            task: "",
+            task: "Analyze the following requirements and propose a software architecture.",
             constraints: [
-                {
-                    id: 1,
-                    text: ""
-                }
+                "Use only well-established patterns",
+                "Include a clear separation of concerns",
+                "Justify every major decision"
             ],
-            input: "",
-            output_format: "",
+            input: "{{requirements}}",
+            output_format: "Markdown with headings, diagrams in Mermaid",
             variables: {}
         }
     },
 
     structuredXml: {
         name: "Structured XML Prompt",
-        description: "Optimizado para generación XML limpia",
+        description: "Optimized for clean XML generation",
         structure: {
             role: {
-                persona: "",
-                job: ""
+                persona: "Code Reviewer",
+                job: "review source code for bugs, security issues and best practices"
             },
-            task: "",
-            constraints: [],
-            input: "",
-            output_format: "",
-            metadata: {
-                version: "1.0",
-                language: "en"
-            }
+            task: "Review the provided source code. List all issues found, classify them by severity, and suggest fixes.",
+            constraints: [
+                "Be specific — reference exact lines",
+                "Prioritize security over style",
+                "Suggest concrete code changes"
+            ],
+            input: "{{source_code}}",
+            output_format: "XML with <issue severity=\"high|medium|low\"> blocks"
         }
     }
 };
