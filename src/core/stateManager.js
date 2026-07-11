@@ -25,7 +25,7 @@ function notify() {
 
     storage.save(state);
 
-    subscribers.forEach(callback => callback(getState()));
+    subscribers.forEach(callback => callback(stateManager.getState()));
 
 }
 
