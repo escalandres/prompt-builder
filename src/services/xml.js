@@ -24,15 +24,12 @@ function formatConstraints(constraints = []) {
     return `<constraints>\n${items}\n</constraints>`;
 }
 
-function formatVariables(variables = {}) {
-    const entries = Object.entries(variables);
+function formatVariables(variables = []) {
+    if (!variables.length) return "";
 
-    if (!entries.length) return "";
-
-    const items = entries
-        .map(([key, value]) => {
-            return `    <${escapeXml(key)}>${escapeXml(value)}</${escapeXml(key)}>`;
-        })
+    const items = variables
+        .filter(v => v.name && v.value)
+        .map(v => `    <${escapeXml(v.name)}>${escapeXml(v.value)}</${escapeXml(v.name)}>`)
         .join("\n");
 
     return `<variables>\n${items}\n</variables>`;
@@ -46,7 +43,7 @@ export function generateXML(state) {
     const outputFormat = escapeXml(state?.output_format || "");
 
     const constraints = formatConstraints(state?.constraints || []);
-    const variables = formatVariables(state?.variables || {});
+    const variables = formatVariables(state?.variables || []);
 
     return [
         `<role>`,

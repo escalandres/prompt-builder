@@ -1,4 +1,7 @@
 export const es = {
+    common: {
+        cancel: "Cancelar",
+    },
     app: {
         title: "XML Prompt Builder",
         subtitle: "Construye prompts estructurados para LLMs",
@@ -16,12 +19,15 @@ export const es = {
         constraintsDesc: "Define las reglas que el LLM debe seguir siempre.",
         constraintsPlaceholder: "Debe incluir...",
         addConstraint: "Agregar",
+        constraintPlaceholder: "Restricción...",
+        removeConstraint: "Eliminar restricción",
         input: "Entrada",
         inputPlaceholder: "{{input}}",
         outputFormat: "Formato de Salida",
         outputFormatPlaceholder: "Markdown con encabezados y listas.",
         variables: "Variables",
         addVariable: "+ Agregar",
+        removeVariable: "Eliminar variable",
         variableNamePlaceholder: "lenguaje",
         variableValuePlaceholder: "{{lenguaje}}",
     },

@@ -3,6 +3,7 @@ import { clipboard } from "../clipboard.js";
 import { generateXML } from "../services/xml.js";
 import { formatXML } from "../services/xmlFormatter.js";
 import { notify } from "../ui/notification.js";
+import { settingsManager } from "../config/settings.js";
 import { createImportModal } from "../components/importTemplateModal.js";
 import { createExportModal } from "../components/exportTemplateModal.js";
 import { createTemplateSelector } from "../components/templateSelector.js";
@@ -94,7 +95,7 @@ export function createEventBinder(elements, renderer) {
 
                 formatMenu.classList.remove("dropdown-open");
 
-            }, { once: false });
+            });
 
             formatMenu.addEventListener("click", (e) => {
 
@@ -122,7 +123,7 @@ export function createEventBinder(elements, renderer) {
 
                 if (current) {
 
-                    preview.textContent = formatXML(current);
+                    preview.textContent = formatXML(current, settingsManager.get().indentSize);
 
                     notify("XML formatted", "success");
 

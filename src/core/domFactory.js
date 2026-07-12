@@ -1,3 +1,5 @@
+import { t } from "../i18n/index.js";
+
 export function createConstraintItem(value = "", index = 0) {
 
     const container = document.createElement("div");
@@ -8,13 +10,13 @@ export function createConstraintItem(value = "", index = 0) {
     input.type = "text";
     input.className = "constraint-input";
     input.value = value;
-    input.placeholder = "Constraint...";
+    input.placeholder = t("form.constraintPlaceholder");
 
     const remove = document.createElement("button");
     remove.type = "button";
     remove.className = "icon-btn remove-item";
-    remove.title = "Remove constraint";
-    remove.setAttribute("aria-label", "Remove constraint");
+    remove.title = t("form.removeConstraint");
+    remove.setAttribute("aria-label", t("form.removeConstraint"));
 
     remove.innerHTML = `
         <svg
@@ -54,20 +56,20 @@ export function createVariableItem(
     const keyInput = document.createElement("input");
     keyInput.type = "text";
     keyInput.className = "variable-name";
-    keyInput.placeholder = "Variable";
+    keyInput.placeholder = t("form.variableNamePlaceholder");
     keyInput.value = key;
 
     const valueInput = document.createElement("input");
     valueInput.type = "text";
     valueInput.className = "variable-value";
-    valueInput.placeholder = "{{value}}";
+    valueInput.placeholder = t("form.variableValuePlaceholder");
     valueInput.value = value;
 
     const remove = document.createElement("button");
     remove.type = "button";
     remove.className = "icon-btn remove-item";
-    remove.title = "Remove variable";
-    remove.setAttribute("aria-label", "Remove variable");
+    remove.title = t("form.removeVariable");
+    remove.setAttribute("aria-label", t("form.removeVariable"));
 
     remove.innerHTML = `
         <svg

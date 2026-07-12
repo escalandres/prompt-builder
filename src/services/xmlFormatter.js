@@ -15,7 +15,7 @@
 /* Formatter principal                                         */
 /* ---------------------------------------------------------- */
 
-export function formatXML(xml) {
+export function formatXML(xml, indentSize = 4) {
 
     if (!xml) {
         return "";
@@ -25,7 +25,7 @@ export function formatXML(xml) {
 
     xml = removeTrailingSpaces(xml);
 
-    xml = indentXML(xml);
+    xml = indentXML(xml, indentSize);
 
     return xml.trim();
 
@@ -87,9 +87,9 @@ export function removeTrailingSpaces(xml) {
 /* XML Indenter                                                */
 /* ---------------------------------------------------------- */
 
-export function indentXML(xml) {
+export function indentXML(xml, indentSize = 4) {
 
-    const INDENT = "    ";
+    const INDENT = " ".repeat(indentSize);
 
     let level = 0;
 
