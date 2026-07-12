@@ -75,6 +75,10 @@ export const stateManager = {
 
         const keys = path.split(".");
 
+        if (keys.some(k => k === "__proto__" || k === "constructor" || k === "prototype")) {
+            return;
+        }
+
         let current = state;
 
         while (keys.length > 1) {

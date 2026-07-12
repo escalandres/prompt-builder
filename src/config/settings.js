@@ -37,7 +37,7 @@ export const settingsManager = {
     },
 
     update(key, value) {
-        if (!(key in settings)) return;
+        if (!Object.hasOwn(DEFAULT_SETTINGS, key)) return;
         settings[key] = value;
         save(settings);
         notify();
