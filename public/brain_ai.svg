@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <defs>
     <linearGradient id="brainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#d7e522"/>
@@ -9,10 +9,8 @@
       <stop offset="100%" stop-color="#0d59a8"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="512" height="512" rx="112" fill="#ffffff"/>
-  <g transform="translate(-113.00,-105.43) scale(0.72141)">
-    <g transform="translate(0,1024) scale(0.1,-0.1)" fill="url(#brainGradient)" stroke="none">
-      <path d="M4515 7140 c-176 -37 -340 -160 -413 -310 -35 -72 -37 -80 -42 -208
+  <g transform="translate(0,1024) scale(0.1,-0.1)" fill="url(#brainGradient)" stroke="none">
+    <path d="M4515 7140 c-176 -37 -340 -160 -413 -310 -35 -72 -37 -80 -42 -208
 -6 -154 -10 -162 -92 -162 -47 0 -70 13 -94 52 -22 35 -67 58 -116 58 -84 0
 -138 -42 -158 -122 -11 -43 -10 -52 11 -95 33 -65 68 -88 134 -88 44 0 61 6
 98 33 42 30 50 32 100 26 85 -10 158 3 218 39 80 48 92 77 100 232 5 103 10
@@ -90,6 +88,5 @@ l-69 0 0 -416 0 -416 28 5 c15 4 55 12 90 18 l62 12 0 89 0 88 263 0 c298 0
 48 -6 72 -34 29 -35 94 -70 129 -71 81 0 148 49 171 125 26 90 -9 169 -90 206
 -79 36 -157 20 -213 -45 -27 -29 -39 -36 -70 -36 -21 0 -54 8 -73 19 -147 79
 -369 206 -386 222 -11 10 -22 19 -25 18 -2 0 -48 -15 -101 -32z"/>
-    </g>
   </g>
 </svg>

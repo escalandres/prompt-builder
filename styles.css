@@ -235,6 +235,16 @@ img {
     box-shadow: var(--shadow);
 }
 
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-logo {
+    flex-shrink: 0;
+}
+
 .header h1 {
 
     font-size: 2rem;
