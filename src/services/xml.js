@@ -1,5 +1,7 @@
 // xml.js
 
+import { t } from "../i18n/index.js";
+
 function escapeXml(value) {
     if (value === null || value === undefined) return "";
 
@@ -47,7 +49,7 @@ export function generateXML(state) {
 
     return [
         `<role>`,
-        `You are a ${rolePersona}. Your job is to ${roleJob}.`,
+        t("xml.roleLine").replace("{persona}", rolePersona).replace("{job}", roleJob),
         `</role>`,
         ``,
         `<task>`,

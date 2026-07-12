@@ -41,6 +41,7 @@ function init() {
     createEventBinder(elements, renderer);
 
     stateManager.subscribe(renderer.render);
+    settingsManager.subscribe(() => renderer.render(stateManager.getState()));
 
     renderer.render(stateManager.getState());
 

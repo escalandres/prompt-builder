@@ -68,6 +68,9 @@ export const es = {
         language: "Idioma",
         languageDesc: "Idioma de la interfaz (las etiquetas XML siguen en inglés).",
     },
+    xml: {
+        roleLine: "Eres {persona}. Tu trabajo es {job}.",
+    },
     footer: {
         brand: "AES STUDIO",
     },
