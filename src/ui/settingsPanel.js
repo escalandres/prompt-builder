@@ -69,8 +69,8 @@ export function createSettingsPanel() {
     });
 
     formFields.language.addEventListener("change", () => {
-        settingsManager.update("language", formFields.language.value);
         setLanguage(formFields.language.value);
+        settingsManager.update("language", formFields.language.value);
     });
 
     toggleBtn.addEventListener("click", open);
