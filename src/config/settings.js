@@ -6,7 +6,12 @@ const subscribers = new Set();
 function load() {
     try {
         const raw = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-        return raw ? { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } : { ...DEFAULT_SETTINGS };
+        const parsed = raw ? JSON.parse(raw) : {};
+        const allowed = {};
+        for (const key of Object.keys(DEFAULT_SETTINGS)) {
+            allowed[key] = key in parsed ? parsed[key] : DEFAULT_SETTINGS[key];
+        }
+        return allowed;
     } catch {
         return { ...DEFAULT_SETTINGS };
     }
