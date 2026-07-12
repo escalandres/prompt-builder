@@ -4,6 +4,9 @@ import { createEventBinder } from "./core/eventBinder.js";
 import { settingsManager } from "./config/settings.js";
 import { createSettingsPanel, applyTheme } from "./ui/settingsPanel.js";
 import { setLanguage } from "./i18n/index.js";
+import { inject } from "@vercel/analytics";
+
+inject();
 
 document.addEventListener("DOMContentLoaded", init);
 
